@@ -21,7 +21,7 @@ func main() {
 	out := make(chan []byte)
 	done := make(chan bool)
 
-	go subscribeKinesis(stream, stream, out, done)
+	go subscribeKinesis(stream, out, done)
 
 	for {
 		select {
@@ -40,7 +40,7 @@ func Kinesis() *kinesis.Kinesis {
 	})
 }
 
-func subscribeKinesis(prefix, stream string, output chan []byte, quit chan bool) {
+func subscribeKinesis(stream string, output chan []byte, quit chan bool) {
 	sreq := &kinesis.DescribeStreamInput{
 		StreamName: aws.String(stream),
 	}
@@ -62,11 +62,11 @@ func subscribeKinesis(prefix, stream string, output chan []byte, quit chan bool)
 
 	for i, shard := range shards {
 		done[i] = make(chan bool)
-		go subscribeKinesisShard(prefix, stream, shard, output, done[i])
+		go subscribeKinesisShard(stream, shard, output, done[i])
 	}
 }
 
-func subscribeKinesisShard(prefix, stream, shard string, output chan []byte, quit chan bool) {
+func subscribeKinesisShard(stream, shard string, output chan []byte, quit chan bool) {
 	ireq := &kinesis.GetShardIteratorInput{
 		ShardID:           aws.String(shard),
 		ShardIteratorType: aws.String("LATEST"),
@@ -103,7 +103,7 @@ func subscribeKinesisShard(prefix, stream, shard string, output chan []byte, qui
 			iter = *gres.NextShardIterator
 
 			for _, record := range gres.Records {
-				output <- []byte(fmt.Sprintf("%s: %s\n", prefix, string(record.Data)))
+				output <- []byte(fmt.Sprintf("%s\n", string(record.Data)))
 			}
 
 			time.Sleep(500 * time.Millisecond)

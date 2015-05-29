@@ -1,10 +1,10 @@
 all: build
 
 build:
-	docker build -t convox/tail .
+	docker build -t convox/ktail .
 
 test: build
-	@export $(shell cat ../.env); docker run --env-file ../.env convox/tail $${KINESIS_TEST}
+	docker run --env-file .env convox/ktail $(STREAM)
 
 vendor:
 	godep save -r -copy=true ./...
