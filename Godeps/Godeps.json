@@ -1,0 +1,45 @@
+{
+	"ImportPath": "github.com/convox/ktail",
+	"GoVersion": "go1.4.2",
+	"Packages": [
+		"./..."
+	],
+	"Deps": [
+		{
+			"ImportPath": "github.com/awslabs/aws-sdk-go/aws",
+			"Rev": "fa66a1839e64ec5a52a1230821097fb54c6561b7"
+		},
+		{
+			"ImportPath": "github.com/awslabs/aws-sdk-go/internal/apierr",
+			"Rev": "fa66a1839e64ec5a52a1230821097fb54c6561b7"
+		},
+		{
+			"ImportPath": "github.com/awslabs/aws-sdk-go/internal/endpoints",
+			"Rev": "fa66a1839e64ec5a52a1230821097fb54c6561b7"
+		},
+		{
+			"ImportPath": "github.com/awslabs/aws-sdk-go/internal/protocol/json/jsonutil",
+			"Rev": "fa66a1839e64ec5a52a1230821097fb54c6561b7"
+		},
+		{
+			"ImportPath": "github.com/awslabs/aws-sdk-go/internal/protocol/jsonrpc",
+			"Rev": "fa66a1839e64ec5a52a1230821097fb54c6561b7"
+		},
+		{
+			"ImportPath": "github.com/awslabs/aws-sdk-go/internal/protocol/rest",
+			"Rev": "fa66a1839e64ec5a52a1230821097fb54c6561b7"
+		},
+		{
+			"ImportPath": "github.com/awslabs/aws-sdk-go/internal/signer/v4",
+			"Rev": "fa66a1839e64ec5a52a1230821097fb54c6561b7"
+		},
+		{
+			"ImportPath": "github.com/awslabs/aws-sdk-go/service/kinesis",
+			"Rev": "fa66a1839e64ec5a52a1230821097fb54c6561b7"
+		},
+		{
+			"ImportPath": "github.com/vaughan0/go-ini",
+			"Rev": "a98ad7ee00ec53921f08832bc06ecf7fd600e6a1"
+		}
+	]
+}
